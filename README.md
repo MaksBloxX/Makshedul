@@ -11,6 +11,8 @@
 
 ## 🏆 GitHub Trophies
 ![](https://github-profile-trophy.vercel.app/?username=MaksBloxX&theme=dark&no-frame=false&no-bg=true&margin-w=4)
+[![GitHub Profile Trophy](https://github-profile-trophy.vercel.app/?username=MaksBloxX)](https://github.com/ryo-ma/github-profile-trophy)
+
 
 ### ✍️ Random Dev Quote
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark)
