@@ -7,6 +7,7 @@
 # Badges
 [![C/C++ CI](https://github.com/MaksBloxX/Advanced-Calculator-Menu-in-C/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/MaksBloxX/Advanced-Calculator-Menu-in-C/actions/workflows/c-cpp.yml)
 [![EBAUB CSE Gallery PHP CI](https://github.com/MaksBloxX/CSE-Gallary-Web/actions/workflows/php.yml/badge.svg?branch=main)](https://github.com/MaksBloxX/CSE-Gallary-Web/actions/workflows/php.yml)
+[![EBAUB Test HTML/JS Deploy](https://github.com/MaksBloxX/EBAUB-Cover-Manager/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/MaksBloxX/EBAUB-Cover-Manager/actions/workflows/deploy.yml)
 
 # 📊 GitHub Stats:
 ![](https://github-readme-stats.shion.dev/api?username=MaksBloxX&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
