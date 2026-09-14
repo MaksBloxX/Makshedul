@@ -1,5 +1,10 @@
 # 💫 About Me:
-🔭 I’m currently working on<br>👯 I’m looking to collaborate on<br>🤝 I’m looking for help with<br>🌱 I’m currently learning<br>💬 Ask me about<br>⚡ Fun fact
+🔭 **I’m currently working on** digitizing university processes and building awesome native web applications.  
+🌱 **I’m currently learning** GitHub Actions, workflow automation, and how to make web apps faster and more secure.  
+👯 **I’m looking to collaborate on** utility tools, portfolio projects, and creative web development ideas.  
+🤝 **I’m looking for help with** mastering UI/UX design principles to make my apps look even better.  
+💬 **Ask me about** Web development, PHP backend logic, PDF generation using JS, and fixing annoying bugs!  
+⚡ **Fun fact:** I code better at night, and I believe offline-first web apps are the future.
 
 
 # 💻 Tech Stack:
