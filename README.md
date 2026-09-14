@@ -58,9 +58,9 @@
 ---
 
 ### 🏆 GitHub Trophies
-<p align="center">
-  <img src="https://github-profile-3d-contrib.puppettoon.workers.dev?username=MaksBloxX&theme=dark" alt="3D Graph" />
-</p>
+<div align="center">
+  <img src="trophy.svg" alt="GitHub Trophies" />
+</div>
 
 ---
 ### 🏆 GitHub Contribution
