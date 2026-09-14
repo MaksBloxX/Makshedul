@@ -19,7 +19,7 @@ jobs:
         with:
           username: MaksBloxX
           output_path: trophy.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TROPHY_TOKEN }}
 
       - name: Commit and Push
         run: |
