@@ -20,6 +20,9 @@ jobs:
           username: MaksBloxX
           output_path: trophy.svg
           token: ${{ secrets.TROPHY_TOKEN }}
+          theme: dark
+          no-frame: true
+          title: "-Followers,-Issues,-PullRequest,-Reviews"
 
       - name: Commit and Push
         run: |
