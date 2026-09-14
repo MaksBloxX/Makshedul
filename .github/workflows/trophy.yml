@@ -14,20 +14,28 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Generate trophy
-        uses: Erik-Donath/github-profile-trophy@feature/generate-svg
-        with:
-          username: MaksBloxX
-          output_path: trophy.svg
-          token: ${{ secrets.TROPHY_TOKEN }}
-          theme: dark
-          no-frame: true
-          title: "-Followers,-Issues,-PullRequest,-Reviews"
+      - name: Download Customized Trophy SVG
+        run: |
+          echo "Downloading trophies..."
+          # আমরা সার্ভারকে বলে দিচ্ছি কোনগুলো বাদ দিতে হবে এবং ডার্ক থিম করতে হবে
+          URL="https://gh-trophy.cdnsoft.net/?username=MaksBloxX&theme=dark&no-frame=true&margin-w=15&title=-Followers,-Issues,-PullRequest,-Reviews"
+          
+          # ছবিটা ডাউনলোড করে temp.svg তে রাখছি
+          curl -s -L "$URL" -o temp.svg
+          
+          # চেক করছি ছবিটা ঠিকঠাক ডাউনলোড হয়েছে কিনা
+          if grep -q "<svg" temp.svg; then
+            mv temp.svg trophy.svg
+            echo "Successfully generated perfect trophies!"
+          else
+            echo "Error downloading SVG."
+            exit 1
+          fi
 
       - name: Commit and Push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add trophy.svg
-          git commit -m "Auto-generated GitHub Trophies" || exit 0
+          git commit -m "Updated Trophies with Filters" || exit 0
           git push
