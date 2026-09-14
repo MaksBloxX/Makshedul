@@ -59,7 +59,7 @@
 
 ### 🏆 GitHub Trophies
 <p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=MaksBloxX&theme=dark" alt="MaksBloxX Trophies" />
+  <img src="https://github-profile-3d-contrib.puppettoon.workers.dev?username=MaksBloxX&theme=dark" alt="3D Graph" />
 </p>
 
 ---
