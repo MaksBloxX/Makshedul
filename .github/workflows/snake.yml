@@ -2,9 +2,12 @@ name: Generate Snake Animation
 
 on:
   schedule:
-    # প্রতিদিন অটোমেটিক আপডেট হবে
     - cron: "0 0 * * *"
   workflow_dispatch:
+
+# এই অংশটি যোগ করা হয়েছে (যাতে বট ছবিটা সেভ করতে পারে)
+permissions:
+  contents: write
 
 jobs:
   build:
