@@ -17,18 +17,38 @@ jobs:
       - name: Download Customized Trophy SVG
         run: |
           echo "Downloading trophies..."
-          # আমরা সার্ভারকে বলে দিচ্ছি কোনগুলো বাদ দিতে হবে এবং ডার্ক থিম করতে হবে
-          URL="https://gh-trophy.cdnsoft.net/?username=MaksBloxX&theme=dark&no-frame=true&margin-w=15&title=-Followers,-Issues,-PullRequest,-Reviews"
           
-          # ছবিটা ডাউনলোড করে temp.svg তে রাখছি
-          curl -s -L "$URL" -o temp.svg
+          # ব্রাউজার (Chrome) হিসেবে পরিচয় দেওয়ার জন্য User-Agent যুক্ত করলাম
+          USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
           
-          # চেক করছি ছবিটা ঠিকঠাক ডাউনলোড হয়েছে কিনা
-          if grep -q "<svg" temp.svg; then
-            mv temp.svg trophy.svg
-            echo "Successfully generated perfect trophies!"
-          else
-            echo "Error downloading SVG."
+          # আপনার পছন্দমতো ফিল্টার এবং থিম (Followers, Issues, PullRequest, Reviews বাদ দেওয়া হয়েছে)
+          PARAMS="?username=MaksBloxX&theme=dark&no-frame=true&margin-w=15&title=-Followers,-Issues,-PullRequest,-Reviews"
+          
+          # ৩টি ভিন্ন সার্ভারের লিংক (যাতে একটা ডাউন হলেও অন্যটা কাজ করে)
+          URLS=(
+            "https://github-profile-trophy-reiyua-mirror.vercel.app$PARAMS"
+            "https://github-profile-trophy.vercel.app$PARAMS"
+            "https://github-profile-trophy-sigma-one.vercel.app$PARAMS"
+          )
+          
+          SUCCESS=0
+          for URL in "${URLS[@]}"; do
+            echo "Trying URL..."
+            curl -s -L -A "$USER_AGENT" "$URL" -o temp.svg
+            
+            # চেক করছি আসল ছবি ডাউনলোড হয়েছে কিনা
+            if grep -q "<svg" temp.svg; then
+              mv temp.svg trophy.svg
+              echo "✅ Successfully generated perfect trophies!"
+              SUCCESS=1
+              break
+            else
+              echo "❌ Failed to get SVG from this mirror, trying next..."
+            fi
+          done
+          
+          if [ $SUCCESS -eq 0 ]; then
+            echo "Error: All servers failed."
             exit 1
           fi
 
@@ -37,5 +57,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add trophy.svg
-          git commit -m "Updated Trophies with Filters" || exit 0
+          git commit -m "Updated Trophies with Filters and Dark Theme" || exit 0
           git push
