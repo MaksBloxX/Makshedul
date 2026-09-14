@@ -12,50 +12,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Download Customized Trophy SVG
-        run: |
-          echo "Downloading trophies..."
-          
-          # ব্রাউজার (Chrome) হিসেবে পরিচয় দেওয়ার জন্য User-Agent যুক্ত করলাম
-          USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
-          
-          # আপনার পছন্দমতো ফিল্টার এবং থিম (Followers, Issues, PullRequest, Reviews বাদ দেওয়া হয়েছে)
-          PARAMS="?username=MaksBloxX&theme=dark&no-frame=true&margin-w=15&title=-Followers,-Issues,-PullRequest,-Reviews"
-          
-          # ৩টি ভিন্ন সার্ভারের লিংক (যাতে একটা ডাউন হলেও অন্যটা কাজ করে)
-          URLS=(
-            "https://github-profile-trophy-reiyua-mirror.vercel.app$PARAMS"
-            "https://github-profile-trophy.vercel.app$PARAMS"
-            "https://github-profile-trophy-sigma-one.vercel.app$PARAMS"
-          )
-          
-          SUCCESS=0
-          for URL in "${URLS[@]}"; do
-            echo "Trying URL..."
-            curl -s -L -A "$USER_AGENT" "$URL" -o temp.svg
-            
-            # চেক করছি আসল ছবি ডাউনলোড হয়েছে কিনা
-            if grep -q "<svg" temp.svg; then
-              mv temp.svg trophy.svg
-              echo "✅ Successfully generated perfect trophies!"
-              SUCCESS=1
-              break
-            else
-              echo "❌ Failed to get SVG from this mirror, trying next..."
-            fi
-          done
-          
-          if [ $SUCCESS -eq 0 ]; then
-            echo "Error: All servers failed."
-            exit 1
-          fi
-
-      - name: Commit and Push
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add trophy.svg
-          git commit -m "Updated Trophies with Filters and Dark Theme" || exit 0
-          git push
+      - name: Generate Trophies
+        uses: lowlighter/metrics@latest
+        with:
+          filename: trophy.svg
+          token: ${{ secrets.TROPHY_TOKEN }}
+          # বেসিক স্ট্যাটস অফ করে দিচ্ছি, যাতে শুধু ট্রফি দেখায়
+          base: ""
+          # ট্রফি প্লাগিন অন করছি
+          plugin_trophies: yes
+          # আপনার অপছন্দের ট্রফিগুলো ফিল্টার (বাদ) করছি
+          plugin_trophies_ignored: followers, issues, pullrequest, reviews
+          # সুন্দর একটি ডার্ক কার্ড ডিজাইন
+          config_theme: dark
