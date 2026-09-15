@@ -12,34 +12,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Your Repo
-        uses: actions/checkout@v3
-
-      - name: Clone Trophy Generator
-        run: git clone https://github.com/ryo-ma/github-profile-trophy.git
-
-      - name: Setup Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
-
       - name: Generate Trophies
-        run: |
-          cd github-profile-trophy
-          deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts MaksBloxX ../ dark
-          cd ..
-          mv MaksBloxX.svg trophy.svg 2>/dev/null || mv *.svg trophy.svg 2>/dev/null
-        env:
-          # এখানে কাস্টম টোকেনের বদলে গিটহাবের বিল্ট-ইন টোকেন ব্যবহার করা হলো
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TITLES: "-Followers,-Issues,-PullRequest,-Reviews"
-          NO_FRAME: "true"
-          MARGIN_W: "15"
-
-      - name: Commit and Push
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add trophy.svg
-          git commit -m "Auto-generated local trophies" || echo "No changes to commit"
-          git push
+        uses: lowlighter/metrics@latest
+        with:
+          filename: trophy.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # এই লাইনটার কারণেই ফাইলটি এবার সরাসরি আপনার মেইন ফোল্ডারে আসবে!
+          committer_branch: main
+          
+          # বেসিক স্ট্যাটস অফ করে দিচ্ছি, যাতে শুধু ট্রফি দেখায়
+          base: ""
+          
+          # ট্রফি প্লাগিন অন করছি
+          plugin_trophies: yes
+          # আপনার অপছন্দের ট্রফিগুলো ফিল্টার (বাদ) করছি
+          plugin_trophies_ignored: followers, issues, pullrequest, reviews
+          
+          # সুন্দর একটি ডার্ক কার্ড ডিজাইন
+          config_theme: dark
