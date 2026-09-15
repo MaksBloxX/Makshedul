@@ -12,37 +12,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # ১. আপনার রেপোজিটরি ক্লোন করবে
       - name: Checkout Your Repo
         uses: actions/checkout@v3
 
-      # ২. অরিজিনাল ট্রফি প্রজেক্টটি ডাউনলোড করবে
       - name: Clone Trophy Generator
         run: git clone https://github.com/ryo-ma/github-profile-trophy.git
 
-      # ৩. Deno (সার্ভার) রান করবে
       - name: Setup Deno
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
 
-      # ৪. আপনার ৪টি অপছন্দের ট্রফি বাদ দিয়ে ছবি তৈরি করবে
       - name: Generate Trophies
         run: |
           cd github-profile-trophy
-          # স্ক্রিপ্ট রান করে ছবি বানাচ্ছি (ডার্ক থিমে)
           deno run --allow-net --allow-env --allow-read --allow-write ./render_svg.ts MaksBloxX ../ dark
           cd ..
-          
-          # ছবিটার নাম বদলে trophy.svg করে দিচ্ছি
           mv MaksBloxX.svg trophy.svg 2>/dev/null || mv *.svg trophy.svg 2>/dev/null
         env:
-          TOKEN: ${{ secrets.TROPHY_TOKEN }}
+          # এখানে কাস্টম টোকেনের বদলে গিটহাবের বিল্ট-ইন টোকেন ব্যবহার করা হলো
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TITLES: "-Followers,-Issues,-PullRequest,-Reviews"
           NO_FRAME: "true"
           MARGIN_W: "15"
 
-      # ৫. সরাসরি আপনার ফাইলে সেভ (Push) করে দেবে
       - name: Commit and Push
         run: |
           git config --global user.name "github-actions[bot]"
