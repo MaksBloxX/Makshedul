@@ -54,6 +54,7 @@
 | **EBAUB CSE Gallery Web** | [![EBAUB CSE Gallery PHP CI](https://github.com/MaksBloxX/CSE-Gallary-Web/actions/workflows/php.yml/badge.svg)](https://github.com/MaksBloxX/CSE-Gallary-Web/actions/workflows/php.yml) |
 | **EBAUB Cover Manager** | [![EBAUB Test HTML/JS Deploy](https://github.com/MaksBloxX/EBAUB-Cover-Manager/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/MaksBloxX/EBAUB-Cover-Manager/actions/workflows/deploy.yml) |
 | **Telegram Media Vault** | [![Python application](https://github.com/MaksBloxX/Telegram-Media-Vault/actions/workflows/python-app.yml/badge.svg)](https://github.com/MaksBloxX/Telegram-Media-Vault/actions/workflows/python-app.yml) |
+| **Arduino Radar System** | [![build](https://github.com/MaksBloxX/Arduino-Radar-System/actions/workflows/python-app.yml/badge.svg)](https://github.com/MaksBloxX/Arduino-Radar-System/actions/workflows/python-app.yml) |
 
 ---
 
